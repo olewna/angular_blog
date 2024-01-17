@@ -1,0 +1,10 @@
+<div class="navbar">
+    <section>
+        <h3 class="home" (click)="goHome()">Blog'O</h3>
+    </section>
+    <section *ngIf="name!==''">
+        <h3 class="name" (click)="goToDetails()">{{name}}</h3>
+        <h3 class="logout" (click)="logout()">Logout</h3>
+    </section>
+    <div *ngIf="name===''"></div>
+</div>

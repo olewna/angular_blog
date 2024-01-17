@@ -1,0 +1,33 @@
+<div class="form">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="title">Tytuł</label>
+            <input id="title" type="text" formControlName="title">
+            <div *ngIf="postForm.controls.title.touched && postForm.controls.title.hasError('required')">
+                Pole jest wymagane
+            </div>
+        </div>
+        
+        <div>
+            <label for="body">Treść</label>
+            <input id="body" type="text" formControlName="body">
+            <div *ngIf="postForm.controls.body.touched && postForm.controls.body.hasError('required')">
+                Pole jest wymagane
+            </div>
+        </div>
+        
+        <div formArrayName="categories">
+            <div class="label">Kategorie</div>
+            <div *ngFor="let categoryForm of categories.controls; index as i">
+                <div class="category" [formGroup]="categoryForm">
+                    <input class="category-input" type="text" formControlName="name">
+                    <button class="category-btn" type="button" (click)="removeCategory(i)">X</button>
+                </div>              
+            </div>
+            <button type="button" (click)="addCategory()">Dodaj kolejną kategorie</button>
+        </div>
+        
+        <button type="submit" [disabled]="!postForm.valid">{{ isEditMode ? "Zmodyfikuj" : "Dodaj wpis"}}</button>
+        <button type="button" (click)="goBack()">Wróć</button>
+    </form>
+</div>

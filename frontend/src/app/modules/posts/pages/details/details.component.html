@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="details" *ngIf="!loading">
+        <h1 class="title det">Tytuł: {{post.title}}</h1>
+        <h4 class="categories det">{{post.categories ? post.categories : "brak kategorii"}}</h4>
+        <h5 class="author det">Autor: {{post.author}}</h5>
+        <p class="body det">{{post.body}}</p>
+        <div *ngIf="post.author===whoIsLogged">
+            <button (click)="goToEdit()">Edytuj</button>
+            <button (click)="deletePost()">Usuń</button>
+        </div>
+        <button (click)="goBack()">Wróć</button>
+    </div>
+</div>
+<div class="loading" *ngIf="loading">Ładowanie danych...</div>
+<app-modal *ngIf="toDelete" [text]="'Czy na pewno chcesz usunąć ten post?'">
+    <div #modalDiv>
+        <button class="button" (click)="cancel()">Nie</button>
+        <button class="button" (click)="confirm()">Tak</button>
+    </div>
+</app-modal>

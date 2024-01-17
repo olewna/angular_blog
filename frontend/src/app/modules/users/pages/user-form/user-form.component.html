@@ -1,0 +1,33 @@
+<div class="form">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <h2>{{ isEditMode ? 'Edytowanie konta' : 'Tworzenie konta' }}</h2>
+        <label for="login">Login:</label>
+        <input type="text" id="login" formControlName="login" placeholder="Login">
+        <div *ngIf="userForm.controls.login.touched && userForm.controls.login.hasError('required')">
+            Pole jest wymagane
+        </div>
+        <div *ngIf="userForm.controls.login.hasError('minlength')">Login powinien mieć przynajmniej 3 znaki</div>
+  
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" placeholder="Email">
+        <div *ngIf="userForm.controls.email.touched && userForm.controls.email.hasError('required')">
+            Pole jest wymagane
+        </div>
+        <div *ngIf="userForm.controls.email.hasError('pattern')">Niepoprawny email</div>
+
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" formControlName="password" placeholder="Hasło">
+        <div *ngIf="userForm.controls.password.touched && userForm.controls.password.hasError('required')">
+            Pole jest wymagane
+        </div>
+        <div *ngIf="userForm.controls.password.hasError('minlength')">Hasło musi mieć przynajmniej 5 znaków</div>
+    
+        <label for="confirmPassword">Powtórz hasło:</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Powtórz hasło">
+        <div *ngIf="userForm.controls.confirmPassword.touched && userForm.hasError('passwordMismatch')">Hasła nie są takie same</div>
+    
+        <button type="submit" [disabled]="!userForm.valid">{{ isEditMode ? 'Zmień dane' : 'Dodaj użytkownika' }}</button>
+        <div *ngIf="message!==''">{{message}}</div>
+        <h5 class="back" (click)="goBack()">{{ isEditMode ? "Wróć" : "Logowanie" }}</h5>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+{
+    "/api/users/*": {
+      "target": "http://localhost:3069",
+      "secure": true,
+      "changeOrigin": true
+    },
+    "/api/posts/*": {
+      "target": "http://localhost:3069",
+      "secure": true,
+      "changeOrigin": true
+    }
+}
+  

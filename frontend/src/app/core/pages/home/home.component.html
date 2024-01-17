@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="add-container">
+        <input class="add" (click)="goToAddPost()" placeholder="O czym dziś napiszesz post?"/>
+    </div>
+    <div class="sort">
+        <h1>Posty</h1>
+        <div class="select">
+            <label for="author-select">Sortowanie po autorze: </label>
+            <select id="author-select" [(ngModel)]="filteredAuthor" (ngModelChange)="pageToOne()">
+                <option *ngFor="let option of authors" [value]="option" >{{option}}</option>
+            </select>
+        </div>
+        <div class="checkbox">
+            <label for="only-my">Sortuj alfabetycznie po autorze: </label>
+            <input id="only-my" type="checkbox" [(ngModel)]="sortAlphabetically" />
+        </div>
+    </div>
+    <div *ngIf="showedPosts.length!==0" class="posts">
+        <div *ngFor="let post of showedPosts" class="post" id="{{post.id}}">
+            <div class="header">
+                <div><div class="title">{{post.title}}</div> <div class="author"> &#64;{{post.author}}</div></div>
+                <button (click)="goToDetails(post.id)">Szczegóły</button>
+            </div>
+            <div class="body">{{post.body}}</div>
+        </div>
+    </div>
+    <div *ngIf="showedPosts.length===0" class="no-posts"> No posts...</div>
+    <div class="pagination">
+        <button class="page" (click)="prevPage()" [disabled]="page===1"><</button>
+        <button class="page" >{{ page }}</button>
+        <button class="page" (click)="nextPage()" [disabled]="!isNext">></button>
+    </div>
+</div>

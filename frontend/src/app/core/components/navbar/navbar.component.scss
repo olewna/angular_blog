@@ -1,0 +1,34 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    border: 1px rgb(37,40,43) solid;
+    color: white;
+    h3 {
+        padding: 0 10px;
+    }
+}
+
+section { 
+    display: flex;
+}
+
+.home {
+    cursor: pointer;
+}
+
+.name {
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.logout {
+    padding-left: 10px;
+    text-decoration:underline;
+    cursor: pointer;
+}

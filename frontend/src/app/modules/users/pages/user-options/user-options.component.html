@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="options">
+        <h1>{{user.login}}</h1>
+        <h2>{{user.email}}</h2>
+        <div>
+            <button (click)="goToEdit()">Edytuj dane</button>
+            <button (click)="deleteAccount()">Usuń konto</button>
+            <button (click)="goBack()">Wróć</button>
+        </div>
+    </div>
+</div>
+<app-modal *ngIf="toDelete" [text]="'Czy na pewno chcesz usunąć swoje konta?'">
+    <div #modalDiv>
+        <button class="button" (click)="cancel()">Nie</button>
+        <button class="button" (click)="confirm()">Tak</button>
+    </div>
+</app-modal>
